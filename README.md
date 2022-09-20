@@ -1,2 +1,2 @@
-# Soft-Uni-
-Exercises done in SOftUni
+# SoftUni-Exercises
+SoftUni C# exercises
