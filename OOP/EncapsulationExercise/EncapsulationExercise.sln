@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncapsulationExercise", "EncapsulationExercise.csproj", "{EE06CB01-E621-438B-9BA7-02FB1A40DE6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza Calories", "Pizza Calories\Pizza Calories.csproj", "{181840EC-CFA0-425B-9796-7E0DA59BA974}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE06CB01-E621-438B-9BA7-02FB1A40DE6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE06CB01-E621-438B-9BA7-02FB1A40DE6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE06CB01-E621-438B-9BA7-02FB1A40DE6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE06CB01-E621-438B-9BA7-02FB1A40DE6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{181840EC-CFA0-425B-9796-7E0DA59BA974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{181840EC-CFA0-425B-9796-7E0DA59BA974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{181840EC-CFA0-425B-9796-7E0DA59BA974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{181840EC-CFA0-425B-9796-7E0DA59BA974}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36B949F9-862C-439F-BA8D-14305A9B4DAA}
+	EndGlobalSection
+EndGlobal
