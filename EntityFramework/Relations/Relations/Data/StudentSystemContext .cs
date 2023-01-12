@@ -30,6 +30,7 @@ namespace P01_StudentSystem.Data
         }
 
         public virtual DbSet<Student> Students { get; set; } = null!;
+        public virtual DbSet<Course> Courses { get; set; } = null!;
 
     }
 }

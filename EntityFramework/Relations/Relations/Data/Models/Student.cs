@@ -12,12 +12,14 @@ namespace P01_StudentSystem.Data.Models
         [Key]
         public int StudentId { get; set; }
 
-        [MaxLength(80)]
+        [MaxLength(100)]
         [Required]
         public string Name { get; set; }
 
+        [MinLength(10)]
         [MaxLength(10)]
         public string PhoneNumber { get; set; }
+
         [Required]
         public DateTime RegisteredOn { get; set; }
 
