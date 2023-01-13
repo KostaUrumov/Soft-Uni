@@ -21,11 +21,27 @@ namespace P01_StudentSystem.Data
         {
         }
 
+        protected override void OnModelCreating (ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Student>(builder =>
+            {
+                builder.HasKey(x => x.StudentId);
+                builder.Property(x => x.Name)
+                    .IsRequired()
+                    .IsUnicode()
+                    .HasMaxLength(100);
+
+
+            });
+
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-EMH9F7E;Database=StudentDB;Integrated Security=true");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-Q3OSTOP;Database=StudentDB;Integrated Security=true");
             }
         }
 
