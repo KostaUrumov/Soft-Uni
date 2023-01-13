@@ -21,9 +21,21 @@ namespace P01_StudentSystem.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<StudentCourse>()
-                .HasKey(c => new { c.StudentId, c.CourseId });
+            modelBuilder.Entity<StudentCourse>(build =>
+            {
+                build.HasKey(ft => new { ft.StudentId, ft.CourseId });
 
+                build.HasOne(ft => ft.Student)
+                    .WithMany(t => t.CourseEnrollments)
+                    .HasForeignKey(ft => ft.StudentId);
+
+                build.HasOne(ft => ft.Course)
+                .WithMany(t => t.StudentsEnrolled)
+                .HasForeignKey(ft => ft.CourseId);
+                
+
+
+            });
             modelBuilder.Entity<Student>(build =>
             {
                 build.Property(c => c.Name)

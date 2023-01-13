@@ -10,7 +10,7 @@ namespace P01_StudentSystem.Data.Models
     {
         public Student()
         {
-            this.CourseEnrollments = new List<Course>();
+            this.CourseEnrollments = new List<StudentCourse>();
             this.HomeworkSubmissions = new List<Homework>();
 
         }
@@ -27,7 +27,7 @@ namespace P01_StudentSystem.Data.Models
 
         public DateTime?  Birthday  { get; set; }
 
-        public ICollection<Course> CourseEnrollments { get; set; }
+        public ICollection<StudentCourse> CourseEnrollments { get; set; }
 
         public ICollection<Homework> HomeworkSubmissions { get; set; }
 
