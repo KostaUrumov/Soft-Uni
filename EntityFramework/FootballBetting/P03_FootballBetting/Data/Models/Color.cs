@@ -11,7 +11,8 @@ namespace P03_FootballBetting.Data.Models
     {
         [Key]
         public int ColorId { get; set; }
-
+        [Required]
+        [MaxLength(20)]
         public string Name { get; set; }
     }
 }
