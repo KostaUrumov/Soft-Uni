@@ -10,8 +10,16 @@ namespace P03_FootballBetting.Data.Models
 {
     public class Team
     {
+        public Team()
+        {
+            this.HomeGames = new List<Game>();
+            this.AwayGames = new List<Game>();
+            this.Players = new List<Player>();
+        }
+       
         [Key]
         public int TeamID { get; set; }
+
         [MaxLength(30)]
         [Required]
         public string Name { get; set; }
@@ -25,17 +33,25 @@ namespace P03_FootballBetting.Data.Models
         [Required]
         public decimal Budget { get; set; }
 
-        [Required]
-        [ForeignKey(nameof(ColorId))]
+        
+        [ForeignKey(nameof(PrimaryKitColorId))]
         public int PrimaryKitColorId { get; set; }
-        public Color ColorPrimary { get; set; }
+        public Color color { get; set; }
 
-        [ForeignKey(nameof(ColorId))]
+        
+        [ForeignKey(nameof(SecondaryKitColorId))]
         public int SecondaryKitColorId { get; set; }
-        public Color ColorSecond { get; set; }
+        public Color Color { get; set; }
 
         [ForeignKey(nameof(TownId))]
         public int TownId { get;}
         public Town Town { get; set; }
+
+        public ICollection<Game> HomeGames { get; set; }
+        public ICollection<Game> AwayGames { get; set; }
+        public ICollection<Player> Players { get; set; }
+
+
+
     }
 }
