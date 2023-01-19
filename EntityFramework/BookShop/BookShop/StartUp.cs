@@ -17,11 +17,13 @@
         {
             using var db = new BookShopContext();
             DbInitializer.ResetDatabase(db);
-            //string input = Console.ReadLine().ToLower();
+            string input = Console.ReadLine().ToLower();
             //System.Console.WriteLine(GetBooksByAgeRestriction(db, input));
             //Console.WriteLine(GetGoldenBooks(db));
-            Console.WriteLine(GetBooksByPrice(db));
+            //Console.WriteLine(GetBooksByPrice(db));
 
+           //int year = int.Parse(Console.ReadLine());
+           Console.WriteLine(GetBooksByCategory(db, input));
         }
 
 
@@ -88,6 +90,37 @@
             return string.Join(Environment.NewLine, tonkGera.Select(b => $"{b.Titles} - ${b.Pricee:f2}")); ;
 
         }
+
+        public static string GetBooksNotReleasedIn(BookShopContext context, int year)
+        {
+           
+            var tonkGera = context
+                .Books
+                .Where(x => x.ReleaseDate.Value.Year != year)
+                .Select(x => new
+                {
+                    Titles = x.Title,
+                    x.BookId
+                })
+                .OrderBy(x => x.BookId)
+                .ToArray();
+
+            return string.Join(Environment.NewLine, tonkGera.Select(x => x.Titles));
+            
+        }
+
+        public static string GetBooksByCategory(BookShopContext context, string input)
+        {
+           
+           
+           
+            Console.WriteLine();
+
+            return "one";
+            
+        }
+
+
 
     }
 }
