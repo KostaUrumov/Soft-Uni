@@ -23,7 +23,7 @@
             //Console.WriteLine(GetBooksByPrice(db));
 
            //int year = int.Parse(Console.ReadLine());
-           Console.WriteLine(GetBooksByCategory(db, input));
+           Console.WriteLine(GetAuthorNamesEndingIn(db, input));
         }
 
 
@@ -109,15 +109,31 @@
             
         }
 
-        public static string GetBooksByCategory(BookShopContext context, string input)
+        public static string GetBooksReleasedBefore(BookShopContext context, string date)
         {
-           
-           
-           
-            Console.WriteLine();
-
-            return "one";
             
+            DateTime data = DateTime.Parse(date);
+            var tonkGera = context
+                .Books
+                .OrderByDescending (x => x.ReleaseDate)
+                .Where(x => x.ReleaseDate < data)
+                .Select(b => $"{b.Title} - {b.EditionType} - ${b.Price:F2}")
+                .ToArray();
+
+            return string.Join(Environment.NewLine,tonkGera);
+            
+        }
+
+
+        public static string GetAuthorNamesEndingIn(BookShopContext context, string input)
+        {
+            int number = int.Parse(input.Length.ToString());
+            var tool = context
+                .Authors
+                .Where (x=> x.FirstName.EndsWith(input))
+                .Select (c=> $"{c.FirstName} {c.LastName}")
+                .ToArray();
+            return string.Join(Environment.NewLine, tool);
         }
 
 
