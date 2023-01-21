@@ -1,8 +1,11 @@
 ﻿namespace BookShop
 {
     using BookShop.Models;
+    using Castle.DynamicProxy.Generators;
     using Data;
     using Initializer;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -17,13 +20,14 @@
         {
             using var db = new BookShopContext();
             DbInitializer.ResetDatabase(db);
-            string input = Console.ReadLine().ToLower();
+            //string input = Console.ReadLine().ToLower();
             //System.Console.WriteLine(GetBooksByAgeRestriction(db, input));
             //Console.WriteLine(GetGoldenBooks(db));
             //Console.WriteLine(GetBooksByPrice(db));
 
            //int year = int.Parse(Console.ReadLine());
-           Console.WriteLine(GetAuthorNamesEndingIn(db, input));
+           
+           Console.WriteLine(CountCopiesByAuthor(db));
         }
 
 
@@ -127,7 +131,7 @@
 
         public static string GetAuthorNamesEndingIn(BookShopContext context, string input)
         {
-            int number = int.Parse(input.Length.ToString());
+            
             var tool = context
                 .Authors
                 .Where (x=> x.FirstName.EndsWith(input))
@@ -137,6 +141,60 @@
         }
 
 
+        public static string GetBookTitlesContaining(BookShopContext context, string input)
+        {
+            var misho = context
+                .Books
+                .Where (x=>x.Title.ToLower().Contains(input.ToLower()))
+                .OrderBy(x=>x.Title)
+                .Select (x=> $"{x.Title}")
+                .ToArray();
+            
+            return string.Join(Environment.NewLine, misho);
+        }
+
+        public static string GetBooksByAuthor(BookShopContext context, string input)
+        {
+           
+            var misho = context
+                .Books
+                .Where(x => x.Author.LastName.ToLower().StartsWith(input.ToLower()))
+                .OrderBy(x=>x.BookId)
+                .Select(x => $"{x.Title} ({x.Author.FirstName} {x.Author.LastName})")
+                .ToArray();
+
+            return string.Join(Environment.NewLine, misho);
+            
+
+        }
+
+
+        public static int CountBooks(BookShopContext context, int lengthCheck)
+        {
+            var pesho = context
+                .Books
+                .Count(x => x.Title.Length > lengthCheck)
+                .ToString();
+            int result = int.Parse(pesho);
+            return result;
+        }
+
+        public static string CountCopiesByAuthor(BookShopContext context)
+        {
+            StringBuilder build = new StringBuilder();
+            var pesho = context
+                .Authors
+                .Select(x => new
+                {
+                    name = (x.FirstName +" "+ x.LastName),
+                    copies = x.Books.Sum(p => p.Copies)
+                })
+                .OrderByDescending(s => s.copies)
+                .ToArray();
+
+
+            return string.Join(Environment.NewLine, pesho.Select(x => $"{x.name} - {x.copies}") );
+        }
 
     }
 }
